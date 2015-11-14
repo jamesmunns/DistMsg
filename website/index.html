@@ -29,8 +29,8 @@
       $(document).ready(function() {
         $.getJSON("../example_msgs/broadcast_farmer.json", function(data){
           var items = [];
-          $.each(data, function(key, val){
-            items.push("<tr><td>"+key["header"]["source"]["sender_id"]+"</td><td></td><td></td><td></td></tr>");
+          $.each(data.messages, function(key, val){
+            items.push("<tr><td>"+val["header"]["source"]["sender_id"]+"</td><td></td><td></td><td></td></tr>");
           });
           $("table tbody").html(items.join());
         });
