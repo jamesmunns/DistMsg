@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>DistMsg</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Sender</th><th>Destination</th><th>Message Type</th><th>Message</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="javascript">
+      $(document).ready(function() {
+        $.getJSON("../example_msgs/broadcast_farmer.json", function(data){
+          var items = [];
+          $.each(data, function(key, val){
+            items.push("<tr><td>"+val["source"]["sender_id"]+"</td><td></td><td></td><td></td></tr>");
+          });
+          $("table tbody").html(items.join());
+        });
+      });
+    </script>
+  </body>
+</html>
