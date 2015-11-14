@@ -1,29 +1,30 @@
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 import json, uuid, requests
 
 app = Flask(__name__)
 
 all_message_dict = {}
 
-demo_msg = {
-    'header' : {
-        'source' : {
-            'sender_id'    : '123456789',
-            'sender_name'  : 'Klaus Typ',
-            'gps_location' : '54N, 23W',
-        },
-        'destination' : {
-            'receiver_id' : '987654321',
-            'gps_center'  : '53N, 23W',
-            'gps_radius'  : 1024,
-        },
-        'msg_uuid' : str(uuid.uuid4()),
-        'msg_type' : 'p2p'
-    },
-    'payload' : 'Help my cows!'
-}
-
-all_message_dict[demo_msg['header']['msg_uuid']] = demo_msg
+### insert one demo message
+#demo_msg = {
+#    'header' : {
+#        'source' : {
+#            'sender_id'    : '123456789',
+#            'sender_name'  : 'Klaus Typ',
+#            'gps_location' : '54N, 23W',
+#        },
+#        'destination' : {
+#            'receiver_id' : '987654321',
+#            'gps_center'  : '53N, 23W',
+#            'gps_radius'  : 1024,
+#        },
+#        'msg_uuid' : str(uuid.uuid4()),
+#        'msg_type' : 'p2p'
+#    },
+#    'payload' : 'Help my cows!'
+#}
+#
+#all_message_dict[demo_msg['header']['msg_uuid']] = demo_msg
 
 @app.route('/human/getall')
 def human_readable_get_all():
