@@ -1,0 +1,17 @@
+{
+  "header": {
+    "source": {
+      "sender_id": "",
+      "sender_name": "",
+      "gps_location": "",
+    },
+    "destination": {
+      "receiver_id": "",
+      "gps_center": "",
+      "gps_radius": "",
+    },
+    "msg_uuid": "",
+    "msg_type": ""
+  },
+  "payload": ""
+}
