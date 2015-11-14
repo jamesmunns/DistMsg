@@ -5,24 +5,60 @@ app = Flask(__name__)
 
 all_message_list = []
 
+#demo_msg = {
+#    'sender'      : '123456789',
+#    'source_gps'  : '32N 54W',
+#    'destination' : '987654321',
+#    'msg_uuid'    : uuid.uuid4(),
+#    'msgtype'     : 'p2p',
+#    'gps_center'  : '31N 54W',
+#    'gps_radius'  : 1024
+#}
+
+#msg
+#    header
+#        source
+#            sender_id - str
+#            sender_name - str
+#            gps_location - str
+#        destination
+#            receiver_id - str
+#            gps_center - str
+#            gps_radius - int
+#        msg_uuid - str
+#        msg_type - str
+#    payload - str
+
 demo_msg = {
-    'sender'      : '123456789',
-    'source_gps'  : '32N 54W',
-    'destination' : '987654321',
-    'msg_uuid'    : uuid.uuid4(),
-    'msgtype'     : 'p2p',
-    'gps_center'  : '31N 54W',
-    'gps_radius'  : 1024
+    'header' : {
+        'source' : {
+            'sender_id'    : '123456789',
+            'sender_name'  : 'Klaus Typ',
+            'gps_location' : '54N, 23W',
+        },
+        'destination' : {
+            'receiver_id' : '987654321',
+            'gps_center'  : '53N, 23W',
+            'gps_radius'  : 1024,
+        },
+        'msg_uuid' : str(uuid.uuid4()),
+        'msg_type' : 'p2p'
+    },
+    'payload' : 'Help my cows!'
 }
 
 all_message_list.append(demo_msg)
 
 @app.route('/human/getall')
 def human_readable_get_all():
-    header = demo_msg.keys()
-    msgs   = [msg.values() for msg in all_message_list]
+    retval = ''
 
-    return tablemaker(header, msgs)
+    for msg in all_message_list:
+        retval += json.dumps(msg, sort_keys=True,
+                                  indent=4,
+                                  separators=(',<br>', ':<br> ') )
+
+    return retval
 
 
 
@@ -49,4 +85,4 @@ def tablemaker(header_row, other_rows):
     return retval
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)
