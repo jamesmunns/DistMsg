@@ -30,7 +30,7 @@
         $.getJSON("../example_msgs/broadcast_farmer.json", function(data){
           var items = [];
           $.each(data, function(key, val){
-            items.push("<tr><td>"+val["source"]["sender_id"]+"</td><td></td><td></td><td></td></tr>");
+            items.push("<tr><td>"+key["header"]["source"]["sender_id"]+"</td><td></td><td></td><td></td></tr>");
           });
           $("table tbody").html(items.join());
         });
