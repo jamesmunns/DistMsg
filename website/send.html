@@ -14,12 +14,13 @@
     <div class="container">
       <form class="form" method="POST">
         <input type="text" name="sender"/>
-          <input type="textarea" name="payload"/>
-          <input type="submit" value="Submit"/>
           <select name="type" size="2">
             <option>broadcast</option>
             <option>peer-to-peer</option>
           </select>
+          <input type="text" name="destination"/>
+          <input type="textarea" name="payload"/>
+          <input type="submit" value="Submit"/>
       </form>
     </div>
 
@@ -45,7 +46,7 @@
                "gps_location": "52°26′25″N,13°5′50″O"
              },
              "destination": {
-               "receiver_id": null,
+               "receiver_id": $("[name='destination']").val(),
                "gps_center": "52°26′25″N,13°5′50″O",
                "gps_radius": 200000
              },
