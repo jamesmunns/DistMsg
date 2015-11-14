@@ -36,13 +36,13 @@
               +val["header"]["source"]["sender_name"]+"@"
               +val["header"]["source"]["gps_location"]
               +"</td><td>"
-              +val["header"]["destination"]["receiver_id"]+":"
-              +val["header"]["destination"]["gps_center"]+"@"
+              +val["header"]["destination"]["receiver_id"]+"@"
+              +val["header"]["destination"]["gps_center"]+"~"
               +val["header"]["destination"]["gps_radius"]+"m"
               +"</td><td>"
               +val["header"]["msg_type"]
               +"</td><td>"
-              +val["header"]["payload"]
+              +val["payload"]
               +"</td></tr>"
             );
           });
