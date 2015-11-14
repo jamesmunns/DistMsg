@@ -27,7 +27,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
-        setTimeout(function(){
+        setInterval(function(){
           $.getJSON("/api/getall", function(data){
             var items = [];
             $.each(data.messages, function(key, val){
