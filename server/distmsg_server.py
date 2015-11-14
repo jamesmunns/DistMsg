@@ -66,13 +66,17 @@ def json_get_all():
 
 @app.route('/push', methods=['POST'])
 def json_push():
+#    print request.json
+#    return "foo"
     if request.json is not None:
-        x = json.loads(request.json)
+        x = request.json
 
         if type(x) is list:
             all_message_list.extend(x)
         else:
             all_message_list.append(x)
+
+
 
     return str(len(all_message_list))
 
