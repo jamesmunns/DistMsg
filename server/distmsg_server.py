@@ -1,33 +1,9 @@
 from flask import Flask, request
-import json, uuid
+import json, uuid, requests
 
 app = Flask(__name__)
 
-all_message_list = []
-
-#demo_msg = {
-#    'sender'      : '123456789',
-#    'source_gps'  : '32N 54W',
-#    'destination' : '987654321',
-#    'msg_uuid'    : uuid.uuid4(),
-#    'msgtype'     : 'p2p',
-#    'gps_center'  : '31N 54W',
-#    'gps_radius'  : 1024
-#}
-
-#msg
-#    header
-#        source
-#            sender_id - str
-#            sender_name - str
-#            gps_location - str
-#        destination
-#            receiver_id - str
-#            gps_center - str
-#            gps_radius - int
-#        msg_uuid - str
-#        msg_type - str
-#    payload - str
+all_message_dict = {}
 
 demo_msg = {
     'header' : {
@@ -47,13 +23,13 @@ demo_msg = {
     'payload' : 'Help my cows!'
 }
 
-all_message_list.append(demo_msg)
+all_message_dict[demo_msg['header']['msg_uuid']] = demo_msg
 
 @app.route('/human/getall')
 def human_readable_get_all():
     retval = ''
 
-    for msg in all_message_list:
+    for msg in all_message_dict.values():
         retval += json.dumps(msg, sort_keys=True,
                                   indent=4,
                                   separators=(',<br>', ':<br> ') )
@@ -62,40 +38,32 @@ def human_readable_get_all():
 
 @app.route('/getall')
 def json_get_all():
-    return json.dumps(all_message_list, separators=(',',':'))
+    retval = { 'messages': all_message_dict.values() }
+    return json.dumps(retval, separators=(',',':'))
 
 @app.route('/push', methods=['POST'])
 def json_push():
-#    print request.json
-#    return "foo"
     if request.json is not None and 'messages' in request.json:
         x = request.json
         for msg in x['messages']:
-            all_message_list.append(msg)
+            all_message_dict[msg['header']['msg_uuid']] = msg
 
-    return str(len(all_message_list))
+    return str(len(all_message_dict))
 
+@app.route('/sync')
+def initiate_sync():
+    ip = request.args.get('ip')
 
+    r = requests.get('http://{}:5000/getall'.format(ip))
 
-def tablemaker(header_row, other_rows):
-    retval = '<table border="1">'
+    items = r.json()
 
-    # First, print the header
-    retval += '<tr>'
-    for item in header_row:
-        retval += "<th>{}</th>".format(item)
-    retval += '</tr>'
+    if 'messages' in items:
+        for msg in items['messages']:
+            all_message_dict[msg['header']['msg_uuid']] = msg
 
-    # Now print each row
-    for row in other_rows:
-        retval += "<tr>"
-        for item in row:
-            retval += "<td>{}</td>".format(item)
-        retval += "</tr>"
+    return str(len(all_message_dict))
 
-    retval += "</table>"
-
-    return retval
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
