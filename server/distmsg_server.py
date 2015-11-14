@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import json, uuid
 
 app = Flask(__name__)
@@ -60,7 +60,21 @@ def human_readable_get_all():
 
     return retval
 
+@app.route('/getall')
+def json_get_all():
+    return json.dumps(all_message_list, separators=(',',':'))
 
+@app.route('/push', methods=['POST'])
+def json_push():
+    if request.json is not None:
+        x = json.loads(request.json)
+
+        if type(x) is list:
+            all_message_list.extend(x)
+        else:
+            all_message_list.append(x)
+
+    return str(len(all_message_list))
 
 
 
