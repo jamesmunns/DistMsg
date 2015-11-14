@@ -71,7 +71,7 @@ def json_push():
     if request.json is not None and 'messages' in request.json:
         x = request.json
         for msg in x['messages']:
-            all_message_list.append(x)
+            all_message_list.append(msg)
 
     return str(len(all_message_list))
 
