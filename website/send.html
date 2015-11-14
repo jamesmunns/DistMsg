@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>DistMsg</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <form class="form" method="POST">
+        <input type="textarea" name="payload"/>
+      </form>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $.ajax({
+          type: "POST",
+          url: "/api/push",
+          data: {
+            "header": {
+              "source": {
+                "sender_id": "004956781234567",
+                "sender_name": "Bauer Ludwig",
+                "gps_location": "52°26′25″N,13°5′50″O"
+              },
+              "destination": {
+                "receiver_id": null,
+                "gps_center": "52°26′25″N,13°5′50″O",
+                "gps_radius": 200000
+              },
+              "msg_uuid": "ea681239-d29b-41f3-a6a6-aba3cef56ac1",
+              "msg_type": "broadcast"
+            },
+            "payload": "SucheHilfeBeimMelken.BieteEssen&Unterkunft.Potsdam,Landweg5"
+          },
+          dataType: "json"
+        });
+      });
+    </script>
+  </body>
+</html>

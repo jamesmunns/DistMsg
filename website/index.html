@@ -27,7 +27,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
-        $.getJSON("krankenhaus.funk:5000/getall", function(data){
+        $.getJSON("/api/getall", function(data){
           var items = [];
           $.each(data.messages, function(key, val){
             items.push(
