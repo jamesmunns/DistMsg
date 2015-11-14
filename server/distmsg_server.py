@@ -68,15 +68,10 @@ def json_get_all():
 def json_push():
 #    print request.json
 #    return "foo"
-    if request.json is not None:
+    if request.json is not None and 'messages' in request.json:
         x = request.json
-
-        if type(x) is list:
-            all_message_list.extend(x)
-        else:
+        for msg in x['messages']:
             all_message_list.append(x)
-
-
 
     return str(len(all_message_list))
 
