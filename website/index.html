@@ -27,10 +27,24 @@
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
-        $.getJSON("../example_msgs/broadcast_farmer.json", function(data){
+        $.getJSON("krankenhaus.funk:5000/getall", function(data){
           var items = [];
           $.each(data.messages, function(key, val){
-            items.push("<tr><td>"+val["header"]["source"]["sender_id"]+"</td><td></td><td></td><td></td></tr>");
+            items.push(
+              "<tr><td>"
+              +val["header"]["source"]["sender_id"]+":"
+              +val["header"]["source"]["sender_name"]+"@"
+              +val["header"]["source"]["gps_location"]
+              +"</td><td>"
+              +val["header"]["destination"]["receiver_id"]+":"
+              +val["header"]["destination"]["gps_center"]+"@"
+              +val["header"]["destination"]["gps_radius"]+"m"
+              +"</td><td>"
+              +val["header"]["msg_type"]
+              +"</td><td>"
+              +val["header"]["payload"]
+              +"</td></tr>"
+            );
           });
           $("table tbody").html(items.join());
         });
