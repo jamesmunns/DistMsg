@@ -3,12 +3,12 @@
     "source": {
       "sender_id": "004956781234567",
       "sender_name": "Bauer Ludwig",
-      "gps_location": "52°26′25″N,13°5′50″O",
+      "gps_location": "52°26′25″N,13°5′50″O"
     },
     "destination": {
       "receiver_id": null,
       "gps_center": "52°26′25″N,13°5′50″O",
-      "gps_radius": 200000,
+      "gps_radius": 200000
     },
     "msg_uuid": "",
     "msg_type": "broadcast"
