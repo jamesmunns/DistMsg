@@ -15,28 +15,26 @@
       <form class="form" method="POST">
         <div class="formgroup">
           <label>Sender Name</label>
-          <input type="text" name="sender" value="Bauer Ludwig"/>
+          <input type="text" class="form-control" name="sender" value="Bauer Ludwig"/>
         </div>
         <div class="formgroup">
           <label>Type</label>
-          <select name="type" size="2">
+          <select name="type" class="form-control" size="2">
             <option selected="selected">broadcast</option>
             <option>peer-to-peer</option>
           </select>
         </div>
         <div class="formgroup">
           <label>Destination GPS</label>
-          <input type="text" name="destination_gps" value="52°26′25″N,13°5′50″O"/>
+          <input type="text" class="form-control" name="destination_gps" value="52°26′25″N,13°5′50″O"/>
         </div>
         <div class="formgroup">
           <label>Destination Radius (in meters)</label>
-          <input type="text" name="destination_radius" value="20000"/>
+          <input type="text" class="form-control" name="destination_radius" value="20000"/>
         </div>
         <div class="formgroup">
           <label>Message</label>
-          <textarea name="payload" size="5">
-            SucheHilfeBeimMelken.BieteEssen&Unterkunft.Potsdam,Landweg5
-          </textarea>
+          <input type="text" class="form-control" name="payload" size="5" value="SucheHilfeBeimMelken.BieteEssen&Unterkunft.Potsdam,Landweg5">
         </div>
         <div class="formgroup">
           <input type="submit" value="Submit"/>
