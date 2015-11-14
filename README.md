@@ -1,7 +1,7 @@
 # DistMsg
 DistMsg is a decentralized messaging protocol first prototyped at the Berlin Energy Hack Hackathon 2015
 
-It is intended to bridge the gap in communications during a blackout event, or other similar catastrophe where communications will be lost
+It is intended to bridge the gap in communications during a blackout event, or other similar catastrophe where normal communications (such as phone, SMS, and internet) will be lost.
 
 ## Vectors of communication
 The entire network is made of two kinds of nodes, users and servers. In a typical case, a user node is typically a PC or Mobile Phone, running the DistMsg app. The User may have cell, bluetooth, or wifi radios. The Server node is typically a battery-backed PC, such as a Raspberry Pi, which may have cell, bluetooth, HAM (APRS), Satellite, or long range point-to-point communication abilities.
